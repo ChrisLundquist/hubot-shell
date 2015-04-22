@@ -21,7 +21,7 @@ module.exports = (robot) ->
   commands = fs.readdirSync(env.HUBOT_SHELL_SCRIPTS)
   robot.logger.debug "loaded commands: #{commands.join(",")}"
 
-  robot.respond /([\w]+) ?(.*?)/i, (msg) ->
+  robot.respond /([\w]+) ?(.*?)$/i, (msg) ->
       # SECURITY scrub command of shell characters JUST TO BE SAFE. This isn't our
       # only line of protection. Using spawn means the shell won't interpret arguments
       # but its possible some commands use arguments in a way that could be
@@ -59,4 +59,3 @@ module.exports = (robot) ->
         msg.send buf
 
       robot.logger.info "Waiting on the child for #{command}"
-
